@@ -6,8 +6,6 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 if (process.env.NVIDIA_API && !process.env.OPENAI_API_KEY) {
     process.env.OPENAI_API_KEY = process.env.NVIDIA_API;
 }
-console.log('ENV NVIDIA_API =', process.env.NVIDIA_API);
-console.log('ENV OPENAI_API_KEY =', process.env.OPENAI_API_KEY);
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -39,7 +37,6 @@ function activate(context) {
         })
     );
 
-    // Quick-fix providers
     context.subscriptions.push(
         vscode.languages.registerCodeActionsProvider(
             ['javascript', 'javascriptreact', 'python'],
@@ -216,7 +213,6 @@ function findIssuesWithRegex(document) {
         }
     });
 
-    // Support JS and Python function definitions
     const funcRegex = /(function\s+([a-zA-Z0-9_]+)\s*\(|const\s+([a-zA-Z0-9_]+)\s*=\s*\(.*\)\s*=>|def\s+([a-zA-Z0-9_]+)\s*\()/i;
     lines.forEach((line, i) => {
         const m = line.match(funcRegex);
