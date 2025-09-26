@@ -1,27 +1,3 @@
-# rules:
-#   - id: hardcoded-secret
-#     patterns:
-#       - pattern: |
-#           $KEY = "$VALUE"
-#     message: "Hardcoded secret detected. Consider using environment variables."
-#     languages: [javascript,python]
-#     severity: WARNING
-
-#   - id: missing-authorization
-#     patterns:
-#       - pattern-either:
-#           - pattern: |
-#               function login($ARGS) {
-#                 ...
-#               }
-#           - pattern: |
-#               function getUser($ARGS) {
-#                 ...
-#               }
-#     message: "Function may lack authorization checks. Add role validation."
-#     languages: [javascript,python]
-#     severity: WARNING
-
 rules:
   - id: hardcoded-secret
     patterns:
