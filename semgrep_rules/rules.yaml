@@ -1,0 +1,52 @@
+# rules:
+#   - id: hardcoded-secret
+#     patterns:
+#       - pattern: |
+#           $KEY = "$VALUE"
+#     message: "Hardcoded secret detected. Consider using environment variables."
+#     languages: [javascript,python]
+#     severity: WARNING
+
+#   - id: missing-authorization
+#     patterns:
+#       - pattern-either:
+#           - pattern: |
+#               function login($ARGS) {
+#                 ...
+#               }
+#           - pattern: |
+#               function getUser($ARGS) {
+#                 ...
+#               }
+#     message: "Function may lack authorization checks. Add role validation."
+#     languages: [javascript,python]
+#     severity: WARNING
+
+rules:
+  - id: hardcoded-secret
+    patterns:
+      - pattern: $VAR = "$SECRET"
+      - metavariable-pattern:
+          metavariable: $SECRET
+          pattern: /(?i)(api[_-]?key|token|secret|passwd|password|credentials)/
+    message: "Possible hardcoded secret detected"
+    severity: ERROR
+    languages: [python]
+    metadata:
+      category: security
+      cwe: "CWE-798: Use of Hard-coded Credentials"
+
+rules:
+  - id: missing-authorization
+    pattern-either:
+      - pattern: |
+          @app.route($ROUTE)
+          def $FUNC(...):
+              ...
+    message: "Route may be missing authorization check"
+    severity: WARNING
+    languages: [python]
+    metadata:
+      category: security
+      cwe: "CWE-285: Improper Authorization"
+

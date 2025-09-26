@@ -1,0 +1,43 @@
+{
+  "name": "SafePrompt",
+  "displayName": "SafePrompt",
+  "description": "A VS Code extension that enhances developer prompts with security requirements, scans code using Semgrep for insecure patterns, and provides inline suggestions or auto-fixes.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:python"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "SafePrompt.runScan",
+        "title": "SafePrompt: Run Scan"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.34.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "openai": "^5.23.0"
+  }
+}
