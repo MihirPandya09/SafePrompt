@@ -19,6 +19,6 @@ It detects insecure coding patterns (like hardcoded secrets, missing authorizati
     ENHANCED: Create login website with authentication, input validation, role-based authorization, and CSRF protection
     ```
 
-  - **LLM Powered Suggestions**
+- **LLM Powered Suggestions**
   - Uses NVIDIA NIM (Llama 3.1 Nemotron-70B) via API for dynamic prompt enhancements.
   - Configurable through `.env` file for API credentials.
